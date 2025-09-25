@@ -1,10 +1,46 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-      <h1>
-        Hello
-      </h1>
-    </body>
+<!-- HTML 문서 유형을 선언합니다. -->
+<!DOCTYPE html>
+<!-- 언어를 한국어로 설정합니다. -->
+<html lang="ko">
+<head>
+    <!-- 문자 인코딩을 UTF-8로 설정합니다. -->
+    <meta charset="UTF-8">
+    <!-- 모바일 장치에서 적절한 비율로 보이도록 뷰포트를 설정합니다. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 웹 페이지의 제목입니다. 브라우저 탭에 표시됩니다. -->
+    <title>게임 도감</title>
+    
+    <!-- 외부 CSS 파일을 연결하여 페이지의 스타일을 적용합니다. -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 전체 콘텐츠를 감싸는 메인 컨테이너입니다. -->
+    <div class="container">
+        
+        <!-- 페이지 상단의 헤더 부분입니다. -->
+        <header>
+            <h1>게임 도감</h1>
+        </header>
+        
+        <!-- 주 콘텐츠 영역으로, 목록과 상세 정보가 들어갑니다. -->
+        <main class="content">
+            
+            <!-- 왼쪽의 아이템 목록이 표시될 내비게이션 영역입니다. 내용은 script.js에 의해 동적으로 채워집니다. -->
+            <nav id="item-list" class="item-list"></nav>
+            
+            <!-- 오른쪽의 아이템 상세 정보가 표시될 섹션입니다. 내용은 script.js에 의해 동적으로 채워집니다. -->
+            <section id="item-details" class="item-details">
+                <!-- 스크립트가 실행되기 전 또는 데이터를 불러오는 동안 표시될 기본 메시지입니다. -->
+                <p>왼쪽 목록에서 항목을 선택하세요.</p>
+            </section>
+            
+        </main>
+    </div>
+    
+    <!-- 페이지의 동적 기능을 담당하는 JavaScript 파일을 연결합니다. -->
+    <!-- body 태그가 닫히기 직전에 두어 HTML 요소들이 먼저 로드되도록 합니다. -->
+    <script src="script.js"></script>
+</body>
 </html>
