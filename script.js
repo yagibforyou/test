@@ -1208,7 +1208,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const imageContainer = document.createElement('div');
                 imageContainer.className = 'item-image-container';
-                imageContainer.style.backgroundImage = "url('images/Background/Back.webp')";
+                imageContainer.style.backgroundImage = "url('images/CategoryIcon/Back.webp')";
                 
                 const img = document.createElement('img');
                 img.src = item.icon;
