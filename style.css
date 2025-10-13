@@ -334,3 +334,16 @@ header h1 {
         padding: 10px;
     }
 }
+
+#modal-image-container {
+    width: 130px;
+    height: 130px;
+    background-image: url('images/CategoryIcon/Back.webp');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}

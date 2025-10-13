@@ -13,6 +13,10 @@ const categoryInfo = {
     "관통": "images/CategoryIcon/Pierce.webp",
     "타격": "images/CategoryIcon/Blunt.webp",
     "필수범용": "images/CategoryIcon/LunarMemory.webp",
+    "코스트범용": "images/CategoryIcon/Cost.webp",
+    "에고범용": "images/CategoryIcon/Egocost.webp",
+    "힐범용": "images/CategoryIcon/Heal.webp",
+    "부가범용": "images/CategoryIcon/Plus.webp"
 };
 
 // --- 아이템 데이터 관리 --- //
@@ -536,7 +540,7 @@ const items = [
         icon: "images/Sinking/Hoarfrost Footprint.webp",
         short_desc: "적 합 위력 감소",
         theme:"<b>1,2층 '공장 자동화' 테마팩 & '사랑할 수 없는' 테마팩 한정, 합성 기프트 / 관측 추천</b>",
-        recipe:[{icon: "images/Sinking/Haunted Shoes.webp", grade : 2}, {icon: "images/Sinking/Frozen Cries.webp", grade : 2}],
+        recipe:[{icon: "images/Sinking/Haunted Shoes.webp", grade : 2},'+', {icon: "images/Sinking/Frozen Cries.webp", grade : 2}],
         details: `
             <p>	
 웨이브 첫 턴 시작 시 아군 전체가 침잠 횟수 3을 획득하고 적 전체(환상체일 경우, 모든 부위)에게 침잠 위력 4, 침잠 횟수 8 부여.
@@ -1111,7 +1115,6 @@ const items = [
         `
     },
 
-
     // {
     //     id: "Burn-",
     //     category: "범용",
@@ -1124,6 +1127,696 @@ const items = [
     //     recipe: ["Burn-002", "Burn-001", { icon: "images/custom/special_ore.png", grade: 5 }]
     // },
 
+    {
+        id: "Essential-001",
+        category: "필수범용",
+        name: "인연 조각",
+        grade: 4,
+        icon: "images/Essential/Piece of Relationship.webp",
+        short_desc: "레벨 최대 10증가",
+        details: `
+            <p><strong>기본 효과</strong> :
+획득 시, 편성 인격의 레벨 5 증가.</p>
+            <p><strong>+</strong> :
+획득 시, 편성 인격의 레벨 7 증가.</p>
+            <p><strong>++</strong> :
+획득 시, 편성 인격의 레벨 10 증가.</p>
+        `
+    },
+    {
+        id: "Essential-002",
+        category: "필수범용",
+        name: "달의 기억",
+        grade: 5,
+        icon: "images/Essential/LunarMemory.webp",
+        recipe:['(', {icon: "images/Burn/Fragment of Hellfire.webp", grade : 4},',', {icon: "images/Bleed/Fragment of Allurement.webp", grade : 4},',', {icon: "images/Tremor/Fragment of Inertia.webp", grade : 4},',', {icon: "images/Poise/Fragment of Conceit.webp", grade : 4},',',{icon: "images/Charge/Fragment of Friction.webp", grade : 4},',',  {icon: "images/Rupture/Fragment of Desire.webp", grade : 4},',', {icon: "images/Sinking/Fragment of Decay.webp", grade : 4},')','중 3개','+',{icon: "images/Slash/Sundered Memory.webp", grade : 4},'+',{icon: "images/Pierce/Punctured Memory.webp", grade : 4},'+',{icon: "images/Blunt/Crushed Memory.webp", grade : 4}],
+        short_desc: "진짜개쎄짐",
+        details: `
+            <p><b>조합식:</b> 잘려나간 기억 + 구멍난 기억 + 바스라진 기억 + 조각 중 택 2종</p><p>
+모든 적(환상체일 경우, 모든 부위)의 물리 내성과 속성 내성이 취약 상태가 됨.
+</p>
+        `
+    },
+    {
+        id: "Essential-003",
+        category: "필수범용",
+        name: "믿음",
+        grade: 4,
+        icon: "images/Essential/Faith.webp",
+        short_desc: "정신력 보정",
+        details: `
+            <p>
+더하기 코인을 굴리는 스킬을 사용할 경우, 다음 턴 시작 시 해당 아군의 정신력이 최댓값으로 적용. (침식된 대상은 적용되지 않음)
+</p>
+        `
+    },
+    {
+        id: "Essential-004",
+        category: "필수범용",
+        name: "거짓 광배",
+        grade: 4,
+        icon: "images/Essential/False Halo.webp",
+        short_desc: "점진적 뎀증",
+        theme: "<b>하드 난이도, '1호선' 한정</b>",
+        details: `
+            <p><strong>기본 효과</strong> :
+공격 적중시마다 참선 1 얻음. (스킬 당 2회)
+자신이 이번 턴에 적에게 스킬로 피격당한 상태면, 얻는 참선 +1.</p>
+            <p><strong>+</strong> :
+공격 적중시마다 참선 1 얻음. (스킬 당 3회)
+자신이 이번 턴에 적에게 스킬로 피격당한 상태면, 얻는 참선 +1.</p>
+            <p><strong>++</strong> :
+공격 적중시마다 참선 2 얻음. (스킬 당 3회)
+자신이 이번 턴에 적에게 스킬로 피격당한 상태면, 얻는 참선 +1.</p>
+        `
+    },
+    {
+        id: "Essential-005",
+        category: "필수범용",
+        name: "굴레",
+        grade: 4,
+        icon: "images/Essential/Bridle.webp",
+        short_desc: "체력 증가",
+        theme: "<b>하드 난이도, '2호선' 한정</b>",
+        details: `
+            <p><strong>기본 효과</strong> :
+스테이지 시작 시 (현재 층 x 2)%만큼 모든 아군의 최대 체력이 증가 (최대 20%)</p>
+            <p><strong>+</strong> :
+스테이지 시작 시 (현재 층 x 3)%만큼 모든 아군의 최대 체력이 증가 (최대 30%)</p>
+            <p><strong>++</strong> :
+스테이지 시작 시 (현재 층 x 5)%만큼 모든 아군의 최대 체력이 증가 (최대 50%)</p>
+        `
+    },
+    {
+        id: "Essential-006",
+        category: "필수범용",
+        name: "날카로운 실과 바늘",
+        grade: 3,
+        icon: "images/Essential/Sharp Needle & Thread.webp",
+        short_desc: "추가 데미지 (광역기 시너지)",
+        theme: "<b>'헬스 치킨' 한정</b>",
+        details: `
+            <p>
+매 턴마다 처음으로 피해를 입힌 스킬의 (피해량 / 2)만큼 추가 고정 피해를 입힘.
+</p>
+        `
+    },
+    {
+        id: "Essential-007",
+        category: "필수범용",
+        name: "주홍 나방떼",
+        grade: 2,
+        icon: "images/Essential/Eclipse of Scarlet Moths.webp",
+        short_desc: "추가 데미지(광역기 시너지)",
+        details: `
+            <p>
+턴 시작 시, 처음으로 적에게 피해를 입힌 공격 스킬의 피해량 절반만큼 무작위 대상 하나에게 고정 피해를 입힘.
+색욕 속성의 공격 스킬을 사용할 경우, 효과가 강화되어 무작위 대상 둘에게 고정 피해를 입힘.
+</p>
+        `
+    },
+    {
+        id: "Essential-008",
+        category: "필수범용",
+        name: "탱고 닭양념장",
+        grade: 3,
+        icon: "images/Essential/Tango Marinade.webp",
+        short_desc: "합위력 증가",
+        theme: "<b>'헬스 치킨' 한정</b>",
+        details: `
+            <p>
+대상보다 속도가 높다면, 합 위력 (속도 / 3)만큼 추가 (최대 3).
+</p>
+        `
+    },
+    {
+        id: "Essential-009",
+        category: "필수범용",
+        name: "여우비",
+        grade: 3,
+        icon: "images/Essential/Sunshower.webp",
+        short_desc: "스킬 위력 증가",
+        details: `
+            <p>
+나태 완전 공명을 발동하였거나 공격 가중치가 2 이상인 스킬을 사용하는 경우 발동.
+전투 시작 시, 아군 전체 스킬 위력 +2.
+</p>
+        `
+    },
+    {
+        id: "Essential-010",
+        category: "필수범용",
+        name: "특별 계약",
+        grade: 3,
+        icon: "images/Essential/Special Contract.webp",
+        short_desc: "보스 체력 비례 추뎀",
+        details: `
+            <p>
+전투 중 피해를 가하여 적이 흐트러질 경우, 대상의 최대 체력 33%만큼 (환상체일 경우, 해당 부위) 고정 체력 피해를 입히고 다음 턴에 취약 2 부여. (전투당 1회 발동)
+</p>
+        `
+    },
+    {
+        id: "Essential-011",
+        category: "필수범용",
+        name: "카르밀라",
+        grade: 2,
+        icon: "images/Essential/Carmilla.webp",
+        short_desc: "잡몹 체력 비례 추뎀",
+        details: `
+            <p><strong>기본 효과</strong> :
+전투 스테이지 입장 시, 환상체 이외의 모든 적에게 최대 체력 20%만큼 고정 피해를 입힘.</p>
+            <p><strong>+</strong> :
+집중 전투 방식이 아닌 전투 스테이지 입장 시, 모든 적에게 최대 체력 25%만큼 고정 피해를 입힘.</p>
+            <p><strong>++</strong> :
+집중 전투 방식이 아닌 전투 스테이지 입장 시, 모든 적에게 최대 체력 30%만큼 고정 피해를 입힘.</p>
+        `
+    },
+    {
+        id: "Essential-012",
+        category: "필수범용",
+        name: "환상 사냥",
+        grade: 3,
+        icon: "images/Essential/Illusory Hunt.webp",
+        short_desc: "피해량 증가",
+        details: `
+            <p>
+집중 전투 방식의 전투 스테이지 입장 시, 아군 전체에게 피해량 증가 2 부여.
+</p>
+        `
+    },
+    {
+        id: "Essential-013",
+        category: "필수범용",
+        name: "블러디 가젯",
+        grade: 1,
+        icon: "images/Essential/Bloody Gadget.webp",
+        short_desc: "피해량 증가",
+        details: `
+            <p><strong>기본 효과</strong> :
+턴 시작 시, 무작위 아군 하나가 피해량 증가 2를 얻음.
+색욕 속성 스킬을 보유한 아군에게 우선적으로 적용되며, 이 경우에는 피해량 증가 1을 추가로 얻음.</p>
+            <p><strong>+</strong> :
+턴 시작 시, 무작위 아군 하나가 피해량 증가 2를 얻음.
+색욕 속성 스킬을 보유한 아군에게 우선적으로 적용되며, 이 경우에는 피해량 증가 2를 추가로 얻음.</p>
+            <p><strong>++</strong> :
+턴 시작 시, 무작위 아군 둘이 피해량 증가 2를 얻음.
+색욕 속성 스킬을 보유한 아군에게 우선적으로 적용되며, 이 경우에는 피해량 증가 2를 추가로 얻음.</p>
+        `
+    },
+    {
+        id: "Essential-014",
+        category: "필수범용",
+        name: "녹슨 기념 주화",
+        grade: 3,
+        icon: "images/Essential/Rusty Commemorative Coin.webp",
+        short_desc: "단일코인 재사용",
+        details: `
+            <p>
+전투 시작 시 처음으로 사용된 아군의 단일 코인 스킬로 대상이 되는 적이 아무도 사망하지 않았다면, 해당 스킬을 한 번 더 사용함.
+단일 코인 스킬 또는 나태 속성의 스킬로 적을 처치한 경우, 해당 아군이 스킬 위력 +1.
+</p>
+        `
+    },
+    {
+        id: "Essential-015",
+        category: "필수범용",
+        name: "대기만성형 타투",
+        grade: 2,
+        icon: "images/Essential/Late-bloomer’s Tattoo.webp",
+        short_desc: "단일코인 오만인격 강화",
+        details: `
+            <p>
+단일 코인 스킬 또는 오만 속성의 스킬을 사용하여 적에게 적중 시, 다음 턴에 해당 아군이 공격 레벨 증가 2, 방어 레벨 증가 2 얻음(최대 5).
+</p>
+        `
+    },
+    {
+        id: "Essential-016",
+        category: "필수범용",
+        name: "잿빛 코트",
+        grade: 2,
+        icon: "images/Essential/Grey Coat.webp",
+        short_desc: "광역기 피해량 증가",
+        details: `
+            <p>
+공격 가중치가 2 이상인 스킬을 사용하여 적에게 적중 시, 가하는 피해량 +20%.
+공격 가중치가 2 이상인 스킬 또는 우울 속성 스킬을 사용하여 적에게 적중 시, 입힌 피해량의 20%만큼 해당 아군이 체력을 회복.
+</p>
+        `
+    },
+    {
+        id: "Essential-017",
+        category: "필수범용",
+        name: "환상통",
+        grade: 3,
+        icon: "images/Essential/Phantom Pain.webp",
+        short_desc: "단일기 피해량증가 / 우울완전공명시 공렙증",
+        details: `
+            <p>
+공격 가중치가 1인 스킬을 사용할 경우, 가하는 피해량 +15%.
+우울 완전 공명을 발동하였다면 전투 시작 시, 모든 아군이 공격 레벨 증가 2를 얻음.
+</p>
+        `
+    },
+    {
+        id: "Essential-018",
+        category: "필수범용",
+        name: "저주 인형",
+        grade: 1,
+        icon: "images/Essential/Voodoo Doll.webp",
+        short_desc: "적 위력감소",
+        details: `
+            <p><strong>기본 효과</strong> :
+턴 시작 시, 적 전체에게 3만큼 질투 피해를 입힘.
+대상의 체력이 33% 미만이면 위력 감소 1 부여.</p>
+            <p><strong>+</strong> :
+턴 시작 시, 적 전체에게 4만큼 질투 피해를 입힘.
+대상의 체력이 50% 미만이면 위력 감소 1 부여.</p>
+            <p><strong>++</strong> :
+턴 시작 시, 적 전체에게 5만큼 질투 피해를 입힘.
+대상의 체력이 50% 미만이면 위력 감소 2 부여.</p>
+        `
+    },
+    {
+        id: "Cost-001",
+        category: "코스트범용",
+        name: "프레스티지 카드",
+        grade: 3,
+        icon: "images/Cost/Prestige Card.webp",
+        short_desc: "에깊 구매 비용 감소",
+        details: `
+            <p>
+상점에서 E.G.O 기프트 구매 비용 30% 감소
+</p>
+        `
+    },
+    {
+        id: "Cost-002",
+        category: "코스트범용",
+        name: "체험형 플랜 가이드",
+        grade: 3,
+        icon: "images/Cost/Trial Plan Guide.webp",
+        short_desc: "에깊 강화 비용 감소",
+        details: `
+            <p>
+상점에서 스킬 교체 비용 30% 감소
+</p>
+        `
+    },
+
+    {
+        id: "Cost-003",
+        category: "코스트범용",
+        name: "황금색 항아리",
+        grade: 2,
+        icon: "images/Cost/Golden Urn.webp",
+        short_desc: "전투 승리 보상 코스트 증가",
+        details: `
+            <p>
+전투 승리 시 획득하는 코스트 20% 증가. (시작 버프, 다른 E.G.O 기프트의 영향을 받지 않음)
+</p>
+        `
+    },
+    
+    {
+        id: "Cost-004",
+        category: "코스트범용",
+        name: "게걸스러운 망치",
+        grade: 2,
+        icon: "images/Cost/Voracious Hammer.webp",
+        short_desc: "죽인 적 수만큼 코스트 증가",
+        details: `
+            <p>
+전투 승리 시, (사망한 적의 수 x 3)만큼 코스트 획득.
+</p>
+        `
+    },
+
+    {
+        id: "Cost-005",
+        category: "코스트범용",
+        name: "생존의 이정표",
+        grade: 2,
+        icon: "images/Cost/Milepost of Survival.webp",
+        short_desc: "층 보스 클리어 코스트 증가",
+        details: `
+            <p>
+층 보스 클리어시, (80 + 해당 전투에 참가한 인격 수 × 5)만큼 코스트 추가로 획득 (전투 클리어 시 코스트 증가 효과는 적용되지 않음).
+</p>
+        `
+    },
+
+    {
+        id: "Ego-001",
+        category: "에고범용",
+        name: "성대한 환대",
+        grade: 3,
+        icon: "images/Ego/Grand Welcome.webp",
+        short_desc: "오만 특화 자원 수급",
+        details: `
+            <p>
+스테이지 시작 시, 오만 속성 E.G.O 자원 +5.
+적 사망 시, 오만 속성 E.G.O 자원 +2, 나머지 속성의 E.G.O 자원 중 무작위 2종 +1
+</p>
+        `
+    },
+
+    {
+        id: "Ego-002",
+        category: "에고범용",
+        name: "커피와 종이학",
+        grade: 2,
+        icon: "images/Ego/Coffee and Cranes.webp",
+        short_desc: "부족 자원 보충",
+        details: `
+            <p>
+턴 시작 시, 직전 턴에 사용한 공격 스킬 속성에 해당하지 않는 나머지 모든 속성의 E.G.O 자원 중 무작위 하나 +1.
+사용한 공격 스킬 속성 중 색욕이 존재할 경우, 효과가 강화되어 직전 턴에 사용한 공격 스킬 속성에 해당하지 않는 나머지 모든 속성의 E.G.O 자원 전부 +1.
+</p>
+        `
+    },
+
+    {
+        id: "Ego-003",
+        category: "에고범용",
+        name: "오라클",
+        grade: 2,
+        icon: "images/Ego/Oracle.webp",
+        short_desc: "자원의 재분배",
+        details: `
+            <p>
+턴 종료 시, 제일 많이 보유한 무작위 E.G.O 자원 하나를 제일 적게 보유한 무작위 E.G.O 자원 하나로 변경.
+</p>
+        `
+    },
+
+    {
+        id: "Ego-004",
+        category: "에고범용",
+        name: "플라스크 속의 아이",
+        grade: 2,
+        icon: "images/Ego/Child within a Flask.webp",
+        short_desc: "모든 자원 수급",
+        details: `
+            <p>
+스테이지 시작 시, 모든 속성의 E.G.O 자원 +1.
+</p>
+        `
+    },
+
+    {
+        id: "Ego-005",
+        category: "에고범용",
+        name: "도착증",
+        grade: 1,
+        icon: "images/Ego/Perversion.webp",
+        short_desc: "자원 추가 획즉",
+        details: `
+            <p>
+스킬을 사용하여 적을 처치한 경우, 사용한 스킬 속성의 E.G.O 자원 +1.
+사용한 스킬 속성이 분노일 경우, 효과가 강화되어 해당 아군이 보유한 모든 스킬 속성의 E.G.O 자원 +1.
+</p>
+        `
+    },
+
+    {
+        id: "Ego-006",
+        category: "에고범용",
+        name: "쪽빛 지포라이터",
+        grade: 1,
+        icon: "images/Ego/Blue Zippo Lighter.webp",
+        short_desc: "우울 특화 자원 수급",
+        details: `
+            <p>
+턴 시작 시, 우울 속성 E.G.O 자원 +1, 나머지 속성의 E.G.O 자원 중 무작위 2종 +1.
+</p>
+        `
+    },
+
+    {
+        id: "Ego-007",
+        category: "에고범용",
+        name: "디스크 파편",
+        grade: 3,
+        icon: "images/Ego/Disk Fragment.webp",
+        short_desc: "EGO 사용시 자원 획득",
+        details: `
+            <p>
+턴 시작 시, 이전 턴에 사용한 탐식 속성 이외의 E.G.O 스킬 횟수만큼 무작위 E.G.O 자원 +1.
+탐식 속성 E.G.O 스킬을 사용한 경우에는 효과가 강화되어, 사용한 탐식 속성 E.G.O 스킬 횟수만큼 무작위 E.G.O 자원 +3.
+</p>
+        `
+    },
+
+    {
+        id: "Heal-001",
+        category: "힐범용",
+        name: "휴대용 구급상자",
+        grade: 3,
+        icon: "images/Heal/First-aid Kit.webp",
+        short_desc: "50% 이하 25% 회복",
+        details: `
+            <p>
+턴 시작 시, 체력이 50% 이하인 아군 한 명의 체력을 최대 체력의 25%만큼 회복. (단, 사망 시에는 발동하지 않으며 전투당 1회 발동)
+</p>
+        `
+    },
+
+    {
+        id: "Heal-002",
+        category: "힐범용",
+        name: "진통제",
+        grade: 2,
+        icon: "images/Heal/Painkiller.webp",
+        short_desc: "흐트 보호3 12.5%힐",
+        details: `
+            <p>
+턴 시작 시 흐트러짐 상태인 아군이 있을 경우, 최대 체력의 12.5%만큼 회복하고 이번 턴 동안 보호 3 얻음.
+</p>
+        `
+    },
+    {
+        id: "Heal-003",
+        category: "힐범용",
+        name: "혈액 포집팩",
+        grade: 1,
+        icon: "images/Heal/Phlebotomy Pack.webp",
+        short_desc: "적 공격 적중시 12.5%힐",
+        details: `
+            <p>
+스킬을 사용하여 적에게 피해를 입힌 경우, 해당 아군이 잃은 체력의 12.5%만큼 체력을 회복(인격마다 턴당 1회 발동)
+사용한 스킬 속성이 분노일 경우, 효과가 강화되어 잃은 체력의 25%만큼 체력을 회복.
+</p>
+        `
+    },
+    {
+        id: "Heal-004",
+        category: "힐범용",
+        name: "귀로",
+        grade: 2,
+        icon: "images/Heal/Homeward.webp",
+        short_desc: "입장시 12%힐",
+        details: `
+            <p>
+전투 스테이지 입장 시, 전투에 참여한 모든 아군이 최대 체력의 12%만큼 체력을 회복
+</p>
+        `
+    },
+    {
+        id: "Heal-005",
+        category: "힐범용",
+        name: "편견",
+        grade: 1,
+        icon: "images/Heal/Prejudice.webp",
+        short_desc: "첫턴 1인 15%힐 / 오만완전공명 추가힐",
+        details: `
+            <p>
+스테이지 첫 턴 시작 시, 가장 체력이 적은 아군이 최대 체력의 15%만큼 체력을 회복.
+오만 완전 공명을 발동하였다면 전투 시작 시, 가장 체력이 적은 아군이 잃은 체력의 12.5%만큼 체력을 회복.
+</p>
+        `
+    },
+    {
+        id: "Heal-006",
+        category: "힐범용",
+        name: "문자 석판",
+        grade: 1,
+        icon: "images/Heal/Lithograph.webp",
+        short_desc: "적 흐트시 5% 회복",
+        details: `
+            <p>
+적이 흐트러짐 상태에 빠질 때마다 아군 중 가장 체력이 적은 인격이 최대 체력의 5%만큼 체력을 회복.
+회복 효과를 받는 인격이 탐식 속성 스킬을 보유한 경우, 효과가 강화되어 최대 체력의 10%만큼을 회복.
+</p>
+        `
+    },
+    {
+        id: "Plus-001",
+        category: "부가범용",
+        name: "오래된 조각상",
+        grade: 4,
+        icon: "images/Plus/Ancient Effigy.webp",
+        short_desc: "속도 증가",
+        details: `
+            <p>
+턴 시작 시, 속도가 제일 빠른 아군 중 하나를 지정하고 다음 턴에 대상에게 신속 5 부여.
+다음 턴 시작 시, 오래된 조각상 효과를 받는 아군을 제외한 나머지 아군 중 속도가 제일 빠른 아군 하나를 지정하여 기프트 효과를 다시 적용 (대상으로 지정할 다른 아군이 없을 경우, 효과 소멸).
+</p>
+        `
+    },
+    {
+        id: "Plus-002",
+        category: "부가범용",
+        name: "비밀 유지 서약서",
+        grade: 4,
+        icon: "images/Plus/Non-disclosure Agreement.webp",
+        short_desc: "무작위 1명 피증",
+        details: `
+            <p>
+턴 시작 시, 무작위 아군 하나의 가하는 피해량이 10% 증가 (비밀 유지 서약서 효과 해제 전까지 유지).
+해당 아군이 스킬을 사용하여 적에게 적중 시 체력 피해를 줄 때마다 가하는 피해량이 10%씩 증가하여 최대 40%까지 증가.
+대상이 체력 피해를 받을 경우 해당 기프트의 효과가 해제되고 다음 턴 시작 시, 다시 무작위 다른 아군 하나에게 기프트 효과를 다시 적용 (대상으로 지정할 다른 아군이 없을 경우, 효과 소멸).
+</p>
+        `
+    },
+    {
+        id: "Plus-003",
+        category: "부가범용",
+        name: "뱀 허물",
+        grade: 2,
+        icon: "images/Plus/Snake Slough.webp",
+        short_desc: "방렙증, 공렙증",
+        theme: "<b>하드 난이도, '1호선' 한정</b>",
+        details: `
+            <p><strong>기본 효과</strong> :
+턴 시작시, 모든 아군이 방어 레벨 증가 2 얻음.
+각 아군이 (자신의 방어 레벨 증가/4)만큼 공격 레벨이 증가함. (최대 10)</p>
+            <p><strong>+</strong> :
+턴 시작시, 모든 아군이 방어 레벨 증가 4 얻음.
+각 아군이 (자신의 방어 레벨 증가/3)만큼 공격 레벨이 증가함. (최대 10)</p>
+            <p><strong>++</strong> :
+턴 시작시, 모든 아군이 방어 레벨 증가 4 얻음.
+각 아군이 (자신의 방어 레벨 증가/2)만큼 공격 레벨이 증가함. (최대 10)</p>
+        `
+    },
+    {
+        id: "Plus-004",
+        category: "부가범용",
+        name: "치프 버틀러의 비급서",
+        grade: 3,
+        icon: "images/Plus/Chief Butler's Secret Arts.webp",
+        short_desc: "적 속박, 공렙증, 정신력 회복",
+        theme: "<b>'어느 세계' 한정</b>",
+        details: `
+            <p>
+웨이브 첫 턴 시작 시, 속도가 제일 낮은 적 하나(환상체일 경우, 무작위 부위)를 선택하여 다음 턴부터 5턴 동안 속박 5 부여.
+합 승리 시 대상보다 속도가 높을 경우, 대상과의 속도 차이만큼 정신력을 회복하고, 그 수치의 절반만큼 공격 레벨이 증가 (해당 스킬에만 적용되며, 공격 레벨 증가량 최대 3).
+</p>
+        `
+    },
+    {
+        id: "Plus-005",
+        category: "부가범용",
+        name: "찰랑이는 연료통",
+        grade: 3,
+        icon: "images/Plus/Swishing Fuel Tank.webp",
+        short_desc: "2,4번 확률 부활",
+        theme: "<b>'심야청소' 한정</b>",
+        details: `
+            <p>
+[편성 순서 2, 4번 인격 전용 효과]
+체력 0이 되는 피해를 받으면 60% 확률로 해당 피해를 받지 않고, 체력을 30 회복함. (전투당 1회 발동)
+아래 상황에서는 사망 방지 및 회복 효과가 발동하지 않음
+- 피격 시 스킬 피해량이 자신의 최대 체력을 초과
+- 체력 회복 감소 효과를 보유
+</p>
+        `
+    },
+    {
+        id: "Plus-006",
+        category: "부가범용",
+        name: "원목 술잔",
+        grade: 3,
+        icon: "images/Plus/Hardwood Liquor Cup.webp",
+        short_desc: "합 패배 보정, 파불코 피증",
+        theme: "<b>하드 난이도, '육참골단 BokGak' 한정</b>",
+        details: `
+            <p>
+합 패배 시, 보호 1 얻고 정신력 3 ~ 6만큼 회복 (인격 별로 턴 당 1회).
+합에서 패배한 스킬의 파괴 불가 코인 효과(E.G.O 스킬 제외)로 적 공격 시, 더하기 코인 스킬이면 더하기 코인 위력 +(3 / 코인 수), 피해량 +20% (더하기 코인 위력 증가값 최소 1), 빼기 코인이면, 피해량 +40%.
+</p>
+        `
+    },
+    {
+        id: "Plus-007",
+        category: "부가범용",
+        name: "긴급 부여형 수사관 배지",
+        grade: 2,
+        icon: "images/Plus/Emergency Investigator Badge.webp",
+        short_desc: "1~3번 인격 부활",
+        theme: "<b>하드 난이도, '시간살인시간 BokGak' 한정</b>",
+        details: `
+            <p><strong>기본 효과</strong> :
+[편성 순서 3번 인격 전용 효과]
+체력이 0이 될 때, 체력이 1 미만으로 감소하지 않고, 전체 체력의 80%만큼 즉시 회복. 흐트러짐 상태 해제 (전투마다 인격당 1회 발동, 소수점 올림)
+E.G.O 기프트의 효과 발동 시 다음 턴부터 스테이지 동안 턴 시작 시 공격 위력 증가 2, 취약 1 얻음
+T사 직원이면, 시간 대여를 얻을 때 1 추가로 얻음
+T사 직원이면, 대상에게 시간 유예가 있으면, 공격 스킬로 가하는 피해량 +10%</p>
+            <p><strong>+</strong> :
+[편성 순서 2번, 3번 인격 전용 효과]
+체력이 0이 될 때, 체력이 1 미만으로 감소하지 않고, 전체 체력의 80%만큼 즉시 회복. 흐트러짐 상태 해제 (전투마다 인격당 1회 발동, 소수점 올림)
+E.G.O 기프트의 효과 발동 시 다음 턴부터 스테이지 동안 턴 시작 시 공격 위력 증가 2, 취약 1 얻음
+T사 직원이면, 시간 대여를 얻을 때 1 추가로 얻음
+T사 직원이면, 대상에게 시간 유예가 있으면, 공격 스킬로 가하는 피해량 +12.5%</p>
+            <p><strong>++</strong> :
+[편성 순서 1번, 2번, 3번 인격 전용 효과]
+체력이 0이 될 때, 체력이 1 미만으로 감소하지 않고, 전체 체력의 80%만큼 즉시 회복. 흐트러짐 상태 해제 (전투마다 인격당 1회 발동, 소수점 올림)
+E.G.O 기프트의 효과 발동 시 다음 턴부터 스테이지 동안 턴 시작 시 공격 위력 증가 2 얻음
+T사 직원이면, 시간 대여를 얻을 때 2 추가로 얻음
+T사 직원이면, 대상에게 시간 유예가 있으면, 공격 스킬로 가하는 피해량 +15%</p>
+        `
+    },
+    {
+        id: "Plus-008",
+        category: "부가범용",
+        name: "경멸의 시선의 경멸",
+        grade: 2,
+        icon: "images/Plus/Contempt of the Gaze of Contempt.webp",
+        short_desc: "1,6번 피해량 증가",
+        theme: "<b>하드 난이도, '3호선' 한정</b>",
+        details: `
+            <p><strong>기본 효과</strong> :
+[편성 6번 인격 전용 효과]
+전투 시작 시, 자신을 타겟팅한 적의 공격 스킬당 가하는 피해량 +10% (최대 20%)
+전투 시작 시 2개 이상의 공격 스킬의 타겟이 되었으면, 자신을 타겟팅한 적에게 타겟팅한 스킬 수만큼 체력 고정 피해와 정신력 피해를 줌. (최대 3. 아군에게는 피해를 주지 않음)</p>
+            <p><strong>+</strong> :
+[편성 6번 인격 전용 효과]
+전투 시작 시, 자신을 타겟팅한 적의 공격 스킬당 가하는 피해량 +10% (최대 20%)
+전투 시작 시 2개 이상의 공격 스킬의 타겟이 되었으면, 자신을 타겟팅한 적에게 (2 x 타겟팅한 스킬 수)만큼 체력 고정 피해와 정신력 피해를 줌. (최대 5. 아군에게는 피해를 주지 않음)</p>
+            <p><strong>++</strong> :
+[편성 1번, 6번 인격 전용 효과]
+전투 시작 시, 자신을 타겟팅한 적의 공격 스킬당 가하는 피해량 +10% (최대 30%)
+전투 시작 시 2개 이상의 공격 스킬의 타겟이 되었으면, 자신을 타겟팅한 적에게 (2 x 타겟팅한 스킬 수)만큼 체력 고정 피해와 정신력 피해를 줌. (최대 10. 아군에게는 피해를 주지 않음)</p>
+        `
+    },
+    {
+        id: "Plus-009",
+        category: "부가범용",
+        name: "메트로놈",
+        grade: 2,
+        icon: "images/Plus/Metronome.webp",
+        short_desc: "공렙증, 방렙증",
+        theme: "<b>하드 난이도, '2호선' 한정</b>",
+        details: `
+            <p><strong>기본 효과</strong> :
+홀수 턴이면, 모든 아군이 피해량 증가 1 얻음. 짝수 턴이면, 모든 아군이 보호 1 얻음.</p>
+            <p><strong>+</strong> :
+홀수 턴이면, 모든 아군이 피해량 증가 1 얻음. 짝수 턴이면, 모든 아군이 보호 1, 방어 레벨 증가 1 얻음.</p>
+            <p><strong>++</strong> :
+홀수 턴이면, 모든 아군이 피해량 증가 1, 공격 레벨 증가 1 얻음. 짝수 턴이면, 모든 아군이 보호 1, 방어 레벨 증가 1 얻음.</p>
+        `
+    }
 ];
 
 // --- 페이지 로직 (이 아래는 수정할 필요가 없습니다) --- //
@@ -1297,38 +1990,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 return itemContainer;
             };
 
-            // Add ingredients
-            item.recipe.forEach((recipeElement, index) => {
+            // Function to create an operator/text element
+            const createOperator = (text) => {
+                const operator = document.createElement('span');
+                operator.className = 'recipe-operator';
+                operator.textContent = text;
+                return operator;
+            };
+
+            // Add ingredients and operators from the recipe array
+            item.recipe.forEach(recipeElement => {
                 let ingredientData = null;
 
+                // Check if the element is an item ID string
                 if (typeof recipeElement === 'string') {
-                    // It's an ID, find the full item
                     ingredientData = items.find(i => i.id === recipeElement);
-                } else if (typeof recipeElement === 'object' && recipeElement !== null) {
-                    // It's a custom ingredient object
+                }
+                
+                // Check if it's a custom item object
+                if (!ingredientData && typeof recipeElement === 'object' && recipeElement !== null) {
                     ingredientData = recipeElement;
                 }
 
                 if (ingredientData) {
+                    // It's an item, create the icon
                     recipeContainer.appendChild(createRecipeItem(ingredientData));
-
-                    // Add '+' if not the last ingredient
-                    if (index < item.recipe.length - 1) {
-                        const plus = document.createElement('span');
-                        plus.className = 'recipe-operator';
-                        plus.textContent = '+';
-                        recipeContainer.appendChild(plus);
-                    }
+                } else if (typeof recipeElement === 'string') {
+                    // It's not an item ID, so treat as an operator string
+                    recipeContainer.appendChild(createOperator(recipeElement));
                 }
             });
 
-            // Add '='
-            const equals = document.createElement('span');
-            equals.className = 'recipe-operator';
-            equals.textContent = '=';
-            recipeContainer.appendChild(equals);
+            // Add '=' to show the result
+            recipeContainer.appendChild(createOperator('='));
 
-            // Add result item
+            // Add the final result item
             recipeContainer.appendChild(createRecipeItem(item));
             
             modalDetails.appendChild(recipeContainer);
